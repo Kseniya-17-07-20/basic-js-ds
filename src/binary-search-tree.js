@@ -53,15 +53,17 @@ class BinarySearchTree {
   }
 
   find( data ) {
-    if (node === null) {
-      return null;
-  } else if (data < node.data) {
-      return this.search(node.left, data);
-  } else if (data > node.data) {
-      return this.search(node.right, data);
-  } else {
-      return node;
+let node = this.rootNode;
+while(node!==null){
+  if(node.data === data){
+    return node.data;
+  } else if (data< node.data){
+    node = node.left;
+  } else{
+    node = node.right;
   }
+} 
+return null;
   }
 
   remove(data) {
