@@ -7,10 +7,22 @@ const { NotImplementedError } = require('../extensions/index.js');
 * using Node from extensions
 */
 
+class Node {
+  constructor(data){
+    this.data = data;
+    this.left = null;
+    this.right = null
+  }
+  
+}
+
 class BinarySearchTree {
 
+  constructor(){
+    this.root = null;
+  }
  root() {
-  this.root = null;
+    return this.root;
   }
 
  /*  module.exports = class BinarySearchTree{
@@ -52,19 +64,34 @@ class BinarySearchTree {
     }
   }
 
-  find( data ) {
-let node = this.rootNode;
-while(node!==null){
-  if(node.data === data){
-    return node.data;
-  } else if (data< node.data){
-    node = node.left;
-  } else{
-    node = node.right;
+
+  find(data){
+    this.root = findNode(this.root, data);
+    function findNode(node, data) {
+    if(this.node(this.data, data)===0) return this;
+    
+    if(this.node(this.data, data) < 0&& this.left){
+      return this.left.find(data)
+    }
+    if(this.node(this.data, data) > 0 && this.right){
+      return this.right.find(data)
+    }
+    return null;
   }
-} 
-return null;
   }
+//   find( data ) {
+// let node = this.rootNode;
+// while(node!==null){
+//   if(node.data === data){
+//     return node.data;
+//   } else if (data< node.data){
+//     node = node.left;
+//   } else{
+//     node = node.right;
+//   }
+// } 
+// return null;
+//   }
 
   remove(data) {
     this.root = removeNode(this.root, data);

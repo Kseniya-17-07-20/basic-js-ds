@@ -22,28 +22,35 @@ const { NotImplementedError } = require('../extensions/index.js');
  *   }
  * }
  */
-function removeKFromList(l, k ) {
-  if(l == null){
-    return l;
-}
-while(l.value == k){
-    l = l.next;
-}
-thisNode = l;
-nextNode = thisNode.next;
-while(nextNode != null){
-    if(nextNode.value == k){
-        thisNode.next = nextNode.next;
-        // No more nodes, ie last node was to be removed
-        if(thisNode.next == null)
-            break;
-    }
-    thisNode = thisNode.next;
-    nextNode = thisNode.next;       
-}
-return l;
-
+function removeKFromList(l, k) {
+  var curr;
+  
+  // remove leading k values with changing l
+  while (l && l.value == k) {
+      l = l.next;
   }
+
+  // loop to the end.
+  // skip nodes with k values.
+  curr = l;
+  while (curr && curr.next) {
+      if (curr.next.value == k) {
+          curr.next = curr.next.next;
+      } else {
+          curr = curr.next;
+      }
+  }
+  return l;
+}
+
+// function removeKFromListRecursion(l, k) {
+//   if(l===null) return null;
+//   else {
+//       l.next = removeKFromList(l.next,k);
+//       return (l.value===k)?l.next:l
+//   }
+// }
+
 
 
 module.exports = {
